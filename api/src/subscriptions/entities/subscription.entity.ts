@@ -1,5 +1,7 @@
-import { Column, PrimaryColumn } from "typeorm";
+// import { Diver } from "src/divers/entities/diver.entity";
+import { Column, Entity, PrimaryColumn } from "typeorm";
 
+@Entity()
 export class Subscription {
     @PrimaryColumn()
     subscription_id: string;
@@ -15,4 +17,7 @@ export class Subscription {
 
     @Column()
     paid: boolean;
+
+    // @ManyToOne(type => Diver, diver => diver.subscriptions)
+    // diver: Diver;
 }

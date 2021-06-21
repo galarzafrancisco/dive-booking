@@ -18,17 +18,17 @@ export class DiversController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.diversService.findOne(+id);
+  findById(@Param('id') id: string) {
+    return this.diversService.findById(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateDiverDto: UpdateDiverDto) {
-    return this.diversService.update(+id, updateDiverDto);
+    return this.diversService.update(id, updateDiverDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.diversService.remove(+id);
+    return this.diversService.remove(id);
   }
 }

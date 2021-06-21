@@ -19,5 +19,6 @@ export class Diver {
 
     @Column()
     phone: string;
+
+    // subscriptions: any
 }
- 

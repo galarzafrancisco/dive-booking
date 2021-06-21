@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DiversModule } from './divers/divers.module';
@@ -13,7 +12,7 @@ import { SiteModule } from './site/site.module';
 import config from '../ormconfig';
 
 @Module({
-  imports: [DiversModule, TypeOrmModule.forRoot(config), SubscriptionsModule, DivesModule, ShopModule, ItemModule, GearRequiredModule, PackingListModule, SiteModule],
+  imports: [DiversModule, SubscriptionsModule, DivesModule, ShopModule, ItemModule, GearRequiredModule, PackingListModule, SiteModule],
   controllers: [AppController],
   providers: [AppService],
 })
