@@ -2,6 +2,10 @@
 database/**/data
 database/**/cockroach-data
 
+# Nest # compiled output
+api/dist
+api/node_modules
+
 # Logs
 logs
 *.log
