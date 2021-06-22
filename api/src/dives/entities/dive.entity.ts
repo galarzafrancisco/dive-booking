@@ -36,7 +36,7 @@ export class Dive {
     @Column()
     shop_id: string;
 
-    @ManyToOne(type => Shop)
+    @ManyToOne(type => Shop, {onDelete: 'CASCADE'})
     @JoinColumn({name: 'shop_id'})
     shop: Shop
 

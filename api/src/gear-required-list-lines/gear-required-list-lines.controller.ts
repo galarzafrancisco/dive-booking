@@ -3,7 +3,7 @@ import { GearRequiredListLinesService } from './gear-required-list-lines.service
 import { CreateGearRequiredListLineDto } from './dto/create-gear-required-list-line.dto';
 import { UpdateGearRequiredListLineDto } from './dto/update-gear-required-list-line.dto';
 
-@Controller('gearRequiredListLines')
+@Controller('gear-required-list-lines')
 export class GearRequiredListLinesController {
   constructor(private readonly gearRequiredListLinesService: GearRequiredListLinesService) {}
 

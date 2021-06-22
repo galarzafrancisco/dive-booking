@@ -9,7 +9,7 @@ export class PackingList {
     @Column()
     subscription_id: string;
 
-    @ManyToOne(type => Subscription, subscription => subscription.packing_lists)
+    @ManyToOne(type => Subscription, subscription => subscription.packing_lists, {onDelete: 'CASCADE'})
     @JoinColumn({name: 'subscription_id'})
     subscription: Subscription;
 

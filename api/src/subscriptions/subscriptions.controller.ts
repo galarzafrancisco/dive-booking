@@ -14,7 +14,9 @@ export class SubscriptionsController {
 
   @Get()
   findAll() {
-    return this.subscriptionsService.findAll();
+    return this.subscriptionsService.findAll({
+      relations: ['diver', 'dive']
+    });
   }
 
   @Get(':id')

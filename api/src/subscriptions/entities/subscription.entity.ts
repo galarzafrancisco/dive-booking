@@ -12,14 +12,14 @@ export class Subscription {
     @Column()
     dive_id: string;
 
-    @ManyToOne(type => Dive)
+    @ManyToOne(type => Dive, {onDelete: 'CASCADE'})
     @JoinColumn({name: 'dive_id'})
     dive: Dive
 
     @Column()
     diver_id: string;
 
-    @ManyToOne(type => Diver, diver => diver.subscriptions)
+    @ManyToOne(type => Diver, diver => diver.subscriptions, {onDelete: 'CASCADE'})
     @JoinColumn({name: 'diver_id'})
     diver: Diver
 
