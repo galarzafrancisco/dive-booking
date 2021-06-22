@@ -1,0 +1,29 @@
+.dropdown-content {
+    /* background-color: whitesmoke;
+    color: black; */
+    width: 100% !important;
+    /* top: 56px !important; */
+    /* right: 0px !important; */
+    /* left: 0px !important; */
+}
+.dropdown-content li {
+    min-height: 20px;
+}
+
+.dropdown-content a {
+    /* padding:10px !important; */
+    color: black !important;
+}
+/* 
+.dropdown-content .btn-flat {
+    text-transform: none;
+    color: white;
+}
+*/
+
+.getStarted {
+    background-color: red !important;
+    color: white !important;
+    padding: 5px;
+    text-align: center;
+}

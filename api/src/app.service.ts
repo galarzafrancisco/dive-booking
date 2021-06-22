@@ -82,12 +82,61 @@ export class AppService {
     // Create a dive
     const dive = await this.divesService.create({
       site_id: site.site_id,
-      date: 1234,
+      date: new Date(2021, 5, 22, 9, 0, 0).getTime(),
       gear_required_list_id: gearRequiredList.list_id,
       cert_required_id: certification.certification_id,
       shop_id: shop.shop_id,
       meeting_address: shop.address
     });
+    this.divesService.create({
+      site_id: site.site_id,
+      date: new Date(2021, 5, 22, 10, 0, 0).getTime(),
+      gear_required_list_id: gearRequiredList.list_id,
+      cert_required_id: certification.certification_id,
+      shop_id: shop.shop_id,
+      meeting_address: shop.address
+    });
+    this.divesService.create({
+      site_id: site.site_id,
+      date: new Date(2021, 5, 22, 11, 0, 0).getTime(),
+      gear_required_list_id: gearRequiredList.list_id,
+      cert_required_id: certification.certification_id,
+      shop_id: shop.shop_id,
+      meeting_address: shop.address
+    });
+    this.divesService.create({
+      site_id: site.site_id,
+      date: new Date(2021, 5, 23, 9, 0, 0).getTime(),
+      gear_required_list_id: gearRequiredList.list_id,
+      cert_required_id: certification.certification_id,
+      shop_id: shop.shop_id,
+      meeting_address: shop.address
+    });
+    this.divesService.create({
+      site_id: site.site_id,
+      date: new Date(2021, 5, 30, 9, 0, 0).getTime(),
+      gear_required_list_id: gearRequiredList.list_id,
+      cert_required_id: certification.certification_id,
+      shop_id: shop.shop_id,
+      meeting_address: shop.address
+    });
+    this.divesService.create({
+      site_id: site.site_id,
+      date: new Date(2021, 6, 1, 9, 0, 0).getTime(),
+      gear_required_list_id: gearRequiredList.list_id,
+      cert_required_id: certification.certification_id,
+      shop_id: shop.shop_id,
+      meeting_address: shop.address
+    });
+    this.divesService.create({
+      site_id: site.site_id,
+      date: new Date(2021, 6, 2, 9, 0, 0).getTime(),
+      gear_required_list_id: gearRequiredList.list_id,
+      cert_required_id: certification.certification_id,
+      shop_id: shop.shop_id,
+      meeting_address: shop.address
+    });
+
 
     // Subscribe diver to dive
     const subscription = await this.subscriptionsService.create({

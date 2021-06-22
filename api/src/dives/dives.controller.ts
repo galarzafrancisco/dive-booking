@@ -14,12 +14,12 @@ export class DivesController {
 
   @Get()
   findAll() {
-    return this.divesService.findAll();
+    return this.divesService.findAll({relations: ['site']});
   }
 
   @Get(':id')
   findById(@Param('id') id: string) {
-    return this.divesService.findById(id);
+    return this.divesService.findById(id, {relations: ['site']});
   }
 
   @Patch(':id')
