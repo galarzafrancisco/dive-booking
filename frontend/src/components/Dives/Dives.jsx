@@ -5,20 +5,22 @@ import useDives from '../../utils/useDives';
 function DiveBox(dive) {
     return (
         <div className='col s6'>
-            <div className="hoverable cardWrapper z-depth-1 light-blue darken-1">
-                <Link to={`/dives/${dive.dive_id}`}>
-                <div className='cardText white-text'>
-                    <h5>{dive.site.name}</h5>
-                    <p>{`${new Date(dive.date)}`.split('GMT')[0]}</p>
+            <Link to={`/dives/${dive.dive_id}`}>
+                <div className="hoverable cardWrapper z-depth-1 light-blue darken-1">
+                    <div className='cardText white-text'>
+                        <h5>{dive.site.name}</h5>
+                        <p>{`${new Date(dive.date)}`.split('GMT')[0]}</p>
+                    </div>
                 </div>
-                </Link>
-            </div>
+            </Link>
         </div>
     )
 }
+
 function Dives() {
-    const dives = useDives().filter(dive => dive.date > new Date()).sort((a,b) => a.date - b.date);
-    const todayDives = dives.filter(dive => dive.date > new Date());
+    // const dives = useDives().filter(dive => dive.date > new Date()).sort((a,b) => a.date - b.date);
+    const dives = useDives().sort((a,b) => a.date - b.date);
+    const todayDives = dives.filter(dive => new Date(dive.date).toLocaleDateString() === new Date().toLocaleDateString())
     const thisWeekDives = dives.filter(dive => dive.date > new Date());
     const nextWeekDives = dives.filter(dive => dive.date > new Date());
     return (

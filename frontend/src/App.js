@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Dives from './components/Dives';
+import DivePortal from './components/DivePortal/DivePortal';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/dives' component={Dives} />
+            <Route path='/dives/:dive_id' component={DivePortal}/>
           </Switch>
         </main>
         <Footer />
