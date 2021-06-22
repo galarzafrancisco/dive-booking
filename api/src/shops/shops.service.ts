@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateShopDto } from './dto/create-shop.dto';
 import { UpdateShopDto } from './dto/update-shop.dto';
+import { Shop } from './entities/shop.entity';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class ShopsService {
-  create(createShopDto: CreateShopDto) {
-    return 'This action adds a new shop';
+  constructor(@InjectRepository(Shop) private shopsRepository: Repository<Shop>) {}
+
+  create(createShopDto: CreateShopDto): Promise<Shop> {
+    const newShop = this.shopsRepository.create({...createShopDto});
+    newShop.shop_id = uuidv4();
+    return this.shopsRepository.save(newShop);
   }
 
-  findAll() {
-    return `This action returns all shops`;
+  findAll(): Promise<Shop[]> {
+    return this.shopsRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} shop`;
+  findById(id: string): Promise<Shop> {
+    return this.shopsRepository.findOneOrFail(id);
   }
 
-  update(id: number, updateShopDto: UpdateShopDto) {
-    return `This action updates a #${id} shop`;
+  async update(id: string, updateShopDto: UpdateShopDto): Promise<Shop> {
+    const shop = await this.findById(id);
+    const updatedShop = {...shop, ...updateShopDto};
+    return this.shopsRepository.save(updatedShop);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} shop`;
+  async remove(id: string): Promise<Shop> {
+    const shop = await this.findById(id);
+    return this.shopsRepository.remove(shop);
   }
 }
