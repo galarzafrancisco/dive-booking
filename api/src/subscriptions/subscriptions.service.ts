@@ -10,10 +10,21 @@ import { v4 as uuidv4 } from 'uuid';
 export class SubscriptionsService {
   constructor(@InjectRepository(Subscription) private subscriptionsRepository: Repository<Subscription>) {}
 
-  create(createSubscriptionDto: CreateSubscriptionDto): Promise<Subscription> {
+  async create(createSubscriptionDto: CreateSubscriptionDto): Promise<Subscription> {
     const newSubscription = this.subscriptionsRepository.create({...createSubscriptionDto});
     newSubscription.subscription_id = uuidv4();
-    return this.subscriptionsRepository.save(newSubscription);
+    await this.subscriptionsRepository.save(newSubscription);
+
+    // Add packing list
+    const expandedSubscription = await this.subscriptionsRepository.findOne(newSubscription.subscription_id, {relations: [
+      'dive', 'dive.gear_required_list', 'dive.gear_required_list.lines', 'dive.gear_required_list.lines.item'
+    ]})
+
+    console.log(expandedSubscription.dive.gear_required_list.lines);
+    
+    newSubscription.packing_lists = [];
+
+    return expandedSubscription;
   }
 
   findAll(options: object = {}): Promise<Subscription[]> {

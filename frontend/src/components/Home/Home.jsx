@@ -27,7 +27,7 @@ function Home() {
                 <h1>Home</h1>
                 <div className='row'>
                     {OptionBox({url: '/dives', title: 'Dives'})}
-                    {OptionBox({url: '/checkin', title: 'Check in'})}
+                    {OptionBox({url: '/check in', title: 'Check in'})}
                 </div>
                 <div className='row'>
                     {OptionBox({url: '/packing-list', title: 'Packing list'})}

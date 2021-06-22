@@ -19,7 +19,7 @@ export class PackingListsController {
 
   @Get(':id')
   findById(@Param('id') id: string) {
-    return this.packingListsService.findById(id);
+    return this.packingListsService.findBySubscriptionId(id);
   }
 
   @Patch(':id')

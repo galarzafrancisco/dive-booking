@@ -10,12 +10,15 @@ export class GearRequiredListLine {
     @Column()
     list_id: string;
 
-    @ManyToOne(type => GearRequiredList)
+    @ManyToOne(type => GearRequiredList, gear_required_list => gear_required_list.lines)
     @JoinColumn({name: 'list_id'})
     list: GearRequiredList
 
     @Column()
     item_id: string;
+
+    @Column()
+    optional: boolean;
 
     @ManyToOne(type => Item)
     @JoinColumn({name: 'item_id'})

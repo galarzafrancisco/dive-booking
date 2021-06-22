@@ -5,7 +5,7 @@ Speed up the check in process for diving operators.
 This app is being developed with 3 main goals:
 - Learn NestJS
 - Learn CockroachDB
-- Make fun dives more efficient by reducing the time required for checking in
+- Make fun dives more efficient by reducing the time required for check ing in
 
 ## History
 When you go for a fun dive, you normally need to get some tanks and gear from a dive shop. At the shop you need to check in, they will ask you what you want and get your gear sorted, but this takes a shit load of time because all the divers show up at the same time and the shops get super busy.

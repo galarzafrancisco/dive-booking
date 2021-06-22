@@ -22,8 +22,10 @@ function App() {
         <main>
           <Switch>
             <Route exact path='/' component={Home} />
+            <Route exact path='/home' component={Home} />
             <Route exact path='/dives' component={Dives} />
             <Route path='/dives/:dive_id' component={DivePortal}/>
+            <Route path='/dives/:dive_id/addDiver' component={DivePortal}/>
           </Switch>
         </main>
         <Footer />

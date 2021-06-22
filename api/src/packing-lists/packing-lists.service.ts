@@ -21,7 +21,11 @@ export class PackingListsService {
   }
 
   findById(id: string, options: object = {}): Promise<PackingList> {
-    return this.PackingListsRepository.findOneOrFail(id, options);
+    return this.PackingListsRepository.findOne(id, options);
+  }
+
+  findBySubscriptionId(id: string, options: object = {}): Promise<PackingList[]> {
+    return this.PackingListsRepository.find({where: `subscription_id = ${id}`});
   }
 
   async update(id: string, updatePackingListDto: UpdatePackingListDto): Promise<PackingList> {

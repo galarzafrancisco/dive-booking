@@ -9,7 +9,7 @@ function Navbar() {
             <nav>
                 <div className='nav-wrapper blue-grey darken-4'>
                     <div className='containerX' style={{paddingRight: '14px', paddingLeft: '14px'}}>
-                        <Link to='/' className='brand-logos' style={{fontSize: '1.8rem'}}>Divers checkin</Link>
+                        <Link to='/' className='brand-logos' style={{fontSize: '1.8rem'}}>Divers check in</Link>
                         <ul className='right valign-wrappers'>
                             <div id='logged-navbar'>
                                 <li className=''><Link to='/account/dashboard'>Hello</Link></li>

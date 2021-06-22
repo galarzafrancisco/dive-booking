@@ -7,7 +7,7 @@ function Footer() {
           <div className='container'>
             <div className='row'>
               <div className='col l6 s12'>
-                <h5><Link to='/home' className='white-text'>Divers checkin</Link></h5>
+                <h5><Link to='/home' className='white-text'>Divers check in</Link></h5>
               </div>
               <div className='col l3 offset-l2 s12'>
                 <h5 className='white-text'>Links</h5>
@@ -22,7 +22,7 @@ function Footer() {
           </div>
           <div className='footer-copyright'>
             <div className='container'>
-            © 2021 Divers checkin
+            © 2021 Divers check in
             </div>
           </div>
         </footer>

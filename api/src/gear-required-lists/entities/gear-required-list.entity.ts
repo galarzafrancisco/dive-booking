@@ -12,6 +12,6 @@ export class GearRequiredList {
     @Column()
     description: string
 
-    @OneToMany(type => GearRequiredListLine, gear_required_list_line => gear_required_list_line.list_id)
+    @OneToMany(type => GearRequiredListLine, gear_required_list_line => gear_required_list_line.list)
     lines: GearRequiredListLine[]
 }

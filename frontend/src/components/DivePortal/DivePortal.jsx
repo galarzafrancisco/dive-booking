@@ -17,6 +17,8 @@ function DivePortal({}) {
                 <p>{dive.site.name}</p>
                 <h3>Divers</h3>
                 {dive.subscriptions.map(subscription => DiverBox({diver: subscription.diver}))}
+                <hr></hr>
+                <h3>Packing list</h3>
             </div>
         </div>
     )
