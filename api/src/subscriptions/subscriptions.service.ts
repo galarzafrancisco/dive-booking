@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { CreateSubscriptionDto } from './dto/create-subscription.dto';
 import { UpdateSubscriptionDto } from './dto/update-subscription.dto';
 import { Subscription } from './entities/subscription.entity';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class SubscriptionsService {
@@ -16,22 +16,22 @@ export class SubscriptionsService {
     return this.subscriptionsRepository.save(newSubscription);
   }
 
-  findAll(): Promise<Subscription[]> {
-    return this.subscriptionsRepository.find();
+  findAll(options: object = {}): Promise<Subscription[]> {
+    return this.subscriptionsRepository.find(options);
   }
 
-  findById(id: string): Promise<Subscription> {
-    return this.subscriptionsRepository.findOneOrFail(id);
+  findById(id: string, options: object = {}): Promise<Subscription> {
+    return this.subscriptionsRepository.findOneOrFail(id, options);
   }
 
   async update(id: string, updateSubscriptionDto: UpdateSubscriptionDto): Promise<Subscription> {
-    const Subscription = await this.findById(id);
-    const updatedSubscription = {...Subscription, ...updateSubscriptionDto};
+    const subscription = await this.findById(id);
+    const updatedSubscription = {...subscription, ...updateSubscriptionDto};
     return this.subscriptionsRepository.save(updatedSubscription);
   }
 
   async remove(id: string): Promise<Subscription> {
-    const Subscription = await this.findById(id);
-    return this.subscriptionsRepository.remove(Subscription);
+    const subscription = await this.findById(id);
+    return this.subscriptionsRepository.remove(subscription);
   }
 }

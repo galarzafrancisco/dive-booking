@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { CreateDiveDto } from './dto/create-dive.dto';
 import { UpdateDiveDto } from './dto/update-dive.dto';
 import { Dive } from './entities/dive.entity';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class DivesService {
@@ -16,24 +16,22 @@ export class DivesService {
     return this.divesRepository.save(newDive);
   }
 
-  findAll(): Promise<Dive[]> {
-    return this.divesRepository.find({
-      relations: ['site']
-    });
+  findAll(options: object = {}): Promise<Dive[]> {
+    return this.divesRepository.find(options);
   }
 
-  findById(id: string): Promise<Dive> {
-    return this.divesRepository.findOneOrFail(id);
+  findById(id: string, options: object = {}): Promise<Dive> {
+    return this.divesRepository.findOneOrFail(id, options);
   }
 
   async update(id: string, updateDiveDto: UpdateDiveDto): Promise<Dive> {
-    const Dive = await this.findById(id);
-    const updatedDive = {...Dive, ...updateDiveDto};
+    const dive = await this.findById(id);
+    const updatedDive = {...dive, ...updateDiveDto};
     return this.divesRepository.save(updatedDive);
   }
 
   async remove(id: string): Promise<Dive> {
-    const Dive = await this.findById(id);
-    return this.divesRepository.remove(Dive);
+    const dive = await this.findById(id);
+    return this.divesRepository.remove(dive);
   }
 }

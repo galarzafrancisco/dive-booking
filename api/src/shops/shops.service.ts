@@ -16,12 +16,12 @@ export class ShopsService {
     return this.shopsRepository.save(newShop);
   }
 
-  findAll(): Promise<Shop[]> {
-    return this.shopsRepository.find();
+  findAll(options: object = {}): Promise<Shop[]> {
+    return this.shopsRepository.find(options);
   }
 
-  findById(id: string): Promise<Shop> {
-    return this.shopsRepository.findOneOrFail(id);
+  findById(id: string, options: object = {}): Promise<Shop> {
+    return this.shopsRepository.findOneOrFail(id, options);
   }
 
   async update(id: string, updateShopDto: UpdateShopDto): Promise<Shop> {

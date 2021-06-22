@@ -11,6 +11,7 @@ import { Diver } from './entities/diver.entity';
     TypeOrmModule.forFeature([Diver])
   ],
   controllers: [DiversController],
-  providers: [DiversService]
+  providers: [DiversService],
+  exports: [DiversService]
 })
 export class DiversModule {}

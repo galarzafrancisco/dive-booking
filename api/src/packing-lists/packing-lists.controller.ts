@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, ParseBoolPipe, DefaultValuePipe } from '@nestjs/common';
 import { PackingListsService } from './packing-lists.service';
 import { CreatePackingListDto } from './dto/create-packing-list.dto';
 import { UpdatePackingListDto } from './dto/update-packing-list.dto';
@@ -18,17 +18,17 @@ export class PackingListsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.packingListsService.findOne(+id);
+  findById(@Param('id') id: string) {
+    return this.packingListsService.findById(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePackingListDto: UpdatePackingListDto) {
-    return this.packingListsService.update(+id, updatePackingListDto);
+    return this.packingListsService.update(id, updatePackingListDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.packingListsService.remove(+id);
+    return this.packingListsService.remove(id);
   }
 }

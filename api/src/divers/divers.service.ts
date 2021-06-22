@@ -16,12 +16,12 @@ export class DiversService {
     return this.diversRepository.save(newDiver);
   }
 
-  findAll(): Promise<Diver[]> {
-    return this.diversRepository.find();
+  findAll(options: object = {}): Promise<Diver[]> {
+    return this.diversRepository.find(options);
   }
 
-  findById(id: string): Promise<Diver> {
-    return this.diversRepository.findOneOrFail(id);
+  findById(id: string, options: object = {}): Promise<Diver> {
+    return this.diversRepository.findOneOrFail(id, options);
   }
 
   async update(id: string, updateDiverDto: UpdateDiverDto): Promise<Diver> {

@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { DivesService } from './dives.service';
 import { DivesController } from './dives.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Dive } from './entities/dive.entity';
 import config from '../../ormconfig';
+import { Dive } from './entities/dive.entity';
 
 @Module({
   imports: [
@@ -11,6 +11,7 @@ import config from '../../ormconfig';
     TypeOrmModule.forFeature([Dive])
   ],
   controllers: [DivesController],
-  providers: [DivesService]
+  providers: [DivesService],
+  exports: [DivesService]
 })
 export class DivesModule {}

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, ParseBoolPipe, DefaultValuePipe } from '@nestjs/common';
 import { DiversService } from './divers.service';
 import { CreateDiverDto } from './dto/create-diver.dto';
 import { UpdateDiverDto } from './dto/update-diver.dto';
@@ -13,13 +13,23 @@ export class DiversController {
   }
 
   @Get()
-  findAll() {
-    return this.diversService.findAll();
+  findAll(@Query('subscriptions') subscriptions: boolean) {
+    const relations = [];
+    console.log(Boolean(subscriptions))
+    console.log(subscriptions)
+    if (Boolean(subscriptions)) {
+      relations.push('subscriptions')
+    }
+    return this.diversService.findAll({relations});
   }
 
   @Get(':id')
-  findById(@Param('id') id: string) {
-    return this.diversService.findById(id);
+  findById(@Param('id') id: string, @Query('subscriptions') subscriptions: boolean) {
+    const relations = [];
+    if (Boolean(subscriptions)) {
+      relations.push('subscriptions')
+    }
+    return this.diversService.findById(id, {relations});
   }
 
   @Patch(':id')

@@ -11,6 +11,7 @@ import { Shop } from './entities/shop.entity';
     TypeOrmModule.forFeature([Shop])
   ],
   controllers: [ShopsController],
-  providers: [ShopsService]
+  providers: [ShopsService],
+  exports: [ShopsService]
 })
 export class ShopsModule {}

@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, ParseBoolPipe, DefaultValuePipe } from '@nestjs/common';
 import { GearRequiredListsService } from './gear-required-lists.service';
 import { CreateGearRequiredListDto } from './dto/create-gear-required-list.dto';
 import { UpdateGearRequiredListDto } from './dto/update-gear-required-list.dto';
 
-@Controller('gear-required-lists')
+@Controller('gearRequiredLists')
 export class GearRequiredListsController {
   constructor(private readonly gearRequiredListsService: GearRequiredListsService) {}
 
@@ -18,17 +18,17 @@ export class GearRequiredListsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.gearRequiredListsService.findOne(+id);
+  findById(@Param('id') id: string) {
+    return this.gearRequiredListsService.findById(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateGearRequiredListDto: UpdateGearRequiredListDto) {
-    return this.gearRequiredListsService.update(+id, updateGearRequiredListDto);
+    return this.gearRequiredListsService.update(id, updateGearRequiredListDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.gearRequiredListsService.remove(+id);
+    return this.gearRequiredListsService.remove(id);
   }
 }

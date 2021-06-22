@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { SitesService } from './sites.service';
 import { SitesController } from './sites.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Site } from './entities/site.entity';
 import config from '../../ormconfig';
+import { Site } from './entities/site.entity';
 
 @Module({
   imports: [
@@ -11,6 +11,7 @@ import config from '../../ormconfig';
     TypeOrmModule.forFeature([Site])
   ],
   controllers: [SitesController],
-  providers: [SitesService]
+  providers: [SitesService],
+  exports: [SitesService]
 })
 export class SitesModule {}

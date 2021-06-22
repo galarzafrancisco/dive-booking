@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { CreateSiteDto } from './dto/create-site.dto';
 import { UpdateSiteDto } from './dto/update-site.dto';
 import { Site } from './entities/site.entity';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class SitesService {
@@ -16,22 +16,22 @@ export class SitesService {
     return this.sitesRepository.save(newSite);
   }
 
-  findAll(): Promise<Site[]> {
-    return this.sitesRepository.find();
+  findAll(options: object = {}): Promise<Site[]> {
+    return this.sitesRepository.find(options);
   }
 
-  findById(id: string): Promise<Site> {
-    return this.sitesRepository.findOneOrFail(id);
+  findById(id: string, options: object = {}): Promise<Site> {
+    return this.sitesRepository.findOneOrFail(id, options);
   }
 
   async update(id: string, updateSiteDto: UpdateSiteDto): Promise<Site> {
-    const Site = await this.findById(id);
-    const updatedSite = {...Site, ...updateSiteDto};
+    const site = await this.findById(id);
+    const updatedSite = {...site, ...updateSiteDto};
     return this.sitesRepository.save(updatedSite);
   }
 
   async remove(id: string): Promise<Site> {
-    const Site = await this.findById(id);
-    return this.sitesRepository.remove(Site);
+    const site = await this.findById(id);
+    return this.sitesRepository.remove(site);
   }
 }
