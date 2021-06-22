@@ -2,7 +2,8 @@ import { Certification } from "src/certifications/entities/certification.entity"
 import { GearRequiredList } from "src/gear-required-lists/entities/gear-required-list.entity";
 import { Shop } from "src/shops/entities/shop.entity";
 import { Site } from "src/sites/entities/site.entity";
-import { Column, PrimaryColumn, Entity, ManyToOne, JoinColumn } from "typeorm";
+import { Subscription } from "src/subscriptions/entities/subscription.entity";
+import { Column, PrimaryColumn, Entity, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 
 @Entity()
 export class Dive {
@@ -43,4 +44,6 @@ export class Dive {
     @Column()
     meeting_address: string;
 
+    @OneToMany(type => Subscription, subscription => subscription.dive)
+    subscriptions: Subscription[]
 }

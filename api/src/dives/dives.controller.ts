@@ -19,7 +19,7 @@ export class DivesController {
 
   @Get(':id')
   findById(@Param('id') id: string) {
-    return this.divesService.findById(id, {relations: ['site']});
+    return this.divesService.findById(id, {relations: ['site', 'subscriptions', 'subscriptions.diver']});
   }
 
   @Patch(':id')

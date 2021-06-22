@@ -21,7 +21,9 @@ export class SubscriptionsController {
 
   @Get(':id')
   findById(@Param('id') id: string) {
-    return this.subscriptionsService.findById(id);
+    return this.subscriptionsService.findById(id, {
+      relations: ['diver', 'dive']
+    });
   }
 
   @Patch(':id')

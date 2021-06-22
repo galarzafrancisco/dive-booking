@@ -98,6 +98,14 @@ export class AppService {
     });
     this.divesService.create({
       site_id: site.site_id,
+      date: new Date().getTime(),
+      gear_required_list_id: gearRequiredList.list_id,
+      cert_required_id: certification.certification_id,
+      shop_id: shop.shop_id,
+      meeting_address: shop.address
+    });
+    this.divesService.create({
+      site_id: site.site_id,
       date: new Date(2021, 5, 22, 11, 0, 0).getTime(),
       gear_required_list_id: gearRequiredList.list_id,
       cert_required_id: certification.certification_id,
