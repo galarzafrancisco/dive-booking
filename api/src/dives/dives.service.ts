@@ -1,26 +1,39 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateDiveDto } from './dto/create-dive.dto';
 import { UpdateDiveDto } from './dto/update-dive.dto';
+import { Dive } from './entities/dive.entity';
+import {v4 as uuidv4} from 'uuid';
 
 @Injectable()
 export class DivesService {
-  create(createDiveDto: CreateDiveDto) {
-    return 'This action adds a new dive';
+  constructor(@InjectRepository(Dive) private divesRepository: Repository<Dive>) {}
+
+  create(createDiveDto: CreateDiveDto): Promise<Dive> {
+    const newDive = this.divesRepository.create({...createDiveDto});
+    newDive.dive_id = uuidv4();
+    return this.divesRepository.save(newDive);
   }
 
-  findAll() {
-    return `This action returns all dives`;
+  findAll(): Promise<Dive[]> {
+    return this.divesRepository.find({
+      relations: ['site']
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} dive`;
+  findById(id: string): Promise<Dive> {
+    return this.divesRepository.findOneOrFail(id);
   }
 
-  update(id: number, updateDiveDto: UpdateDiveDto) {
-    return `This action updates a #${id} dive`;
+  async update(id: string, updateDiveDto: UpdateDiveDto): Promise<Dive> {
+    const Dive = await this.findById(id);
+    const updatedDive = {...Dive, ...updateDiveDto};
+    return this.divesRepository.save(updatedDive);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} dive`;
+  async remove(id: string): Promise<Dive> {
+    const Dive = await this.findById(id);
+    return this.divesRepository.remove(Dive);
   }
 }

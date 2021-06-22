@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateSubscriptionDto } from './dto/create-subscription.dto';
 import { UpdateSubscriptionDto } from './dto/update-subscription.dto';
+import { Subscription } from './entities/subscription.entity';
+import {v4 as uuidv4} from 'uuid';
 
 @Injectable()
 export class SubscriptionsService {
-  create(createSubscriptionDto: CreateSubscriptionDto) {
-    return 'This action adds a new subscription';
+  constructor(@InjectRepository(Subscription) private subscriptionsRepository: Repository<Subscription>) {}
+
+  create(createSubscriptionDto: CreateSubscriptionDto): Promise<Subscription> {
+    const newSubscription = this.subscriptionsRepository.create({...createSubscriptionDto});
+    newSubscription.subscription_id = uuidv4();
+    return this.subscriptionsRepository.save(newSubscription);
   }
 
-  findAll() {
-    return `This action returns all subscriptions`;
+  findAll(): Promise<Subscription[]> {
+    return this.subscriptionsRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} subscription`;
+  findById(id: string): Promise<Subscription> {
+    return this.subscriptionsRepository.findOneOrFail(id);
   }
 
-  update(id: number, updateSubscriptionDto: UpdateSubscriptionDto) {
-    return `This action updates a #${id} subscription`;
+  async update(id: string, updateSubscriptionDto: UpdateSubscriptionDto): Promise<Subscription> {
+    const Subscription = await this.findById(id);
+    const updatedSubscription = {...Subscription, ...updateSubscriptionDto};
+    return this.subscriptionsRepository.save(updatedSubscription);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} subscription`;
+  async remove(id: string): Promise<Subscription> {
+    const Subscription = await this.findById(id);
+    return this.subscriptionsRepository.remove(Subscription);
   }
 }

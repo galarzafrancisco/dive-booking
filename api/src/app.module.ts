@@ -4,15 +4,16 @@ import { AppService } from './app.service';
 import { DiversModule } from './divers/divers.module';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 import { DivesModule } from './dives/dives.module';
-import { ShopModule } from './shop/shop.module';
-import { ItemModule } from './item/item.module';
-import { GearRequiredModule } from './gear-required/gear-required.module';
-import { PackingListModule } from './packing-list/packing-list.module';
-import { SiteModule } from './site/site.module';
-import config from '../ormconfig';
+import { SitesModule } from './sites/sites.module';
+import { ShopsModule } from './shops/shops.module';
+import { ItemsModule } from './items/items.module';
+import { GearRequiredListsModule } from './gear-required-lists/gear-required-lists.module';
+import { GearRequiredListLinesModule } from './gear-required-list-lines/gear-required-list-lines.module';
+import { PackingListsModule } from './packing-lists/packing-lists.module';
+import { CertificationsModule } from './certifications/certifications.module';
 
 @Module({
-  imports: [DiversModule, SubscriptionsModule, DivesModule, ShopModule, ItemModule, GearRequiredModule, PackingListModule, SiteModule],
+  imports: [DiversModule, SubscriptionsModule, DivesModule, SitesModule, ShopsModule, ItemsModule, GearRequiredListsModule, GearRequiredListLinesModule, PackingListsModule, CertificationsModule],
   controllers: [AppController],
   providers: [AppService],
 })

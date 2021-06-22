@@ -8,9 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class DiversService {
-  constructor(@InjectRepository(Diver) private diversRepository: Repository<Diver>) {
-
-  }
+  constructor(@InjectRepository(Diver) private diversRepository: Repository<Diver>) {}
 
   create(createDiverDto: CreateDiverDto): Promise<Diver> {
     const newDiver = this.diversRepository.create({...createDiverDto});

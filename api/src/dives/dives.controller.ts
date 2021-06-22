@@ -19,16 +19,16 @@ export class DivesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.divesService.findOne(+id);
+    return this.divesService.findById(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateDiveDto: UpdateDiveDto) {
-    return this.divesService.update(+id, updateDiveDto);
+    return this.divesService.update(id, updateDiveDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.divesService.remove(+id);
+    return this.divesService.remove(id);
   }
 }

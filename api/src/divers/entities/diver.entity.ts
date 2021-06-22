@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn, } from "typeorm";
+import { Subscription } from "src/subscriptions/entities/subscription.entity";
+import { Column, Entity, OneToMany, PrimaryColumn, } from "typeorm";
 
 @Entity()
 export class Diver {
@@ -20,5 +21,6 @@ export class Diver {
     @Column()
     phone: string;
 
-    // subscriptions: any
+    @OneToMany(type => Subscription, subscription => subscription.diver)
+    subscriptions: Subscription[]
 }

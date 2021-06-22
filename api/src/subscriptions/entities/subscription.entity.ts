@@ -1,5 +1,8 @@
 // import { Diver } from "src/divers/entities/diver.entity";
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Diver } from "src/divers/entities/diver.entity";
+import { Dive } from "src/dives/entities/dive.entity";
+import { PackingList } from "src/packing-lists/entities/packing-list.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class Subscription {
@@ -9,8 +12,16 @@ export class Subscription {
     @Column()
     dive_id: string;
 
+    @ManyToOne(type => Dive)
+    @JoinColumn({name: 'dive_id'})
+    dive: Dive
+
     @Column()
     diver_id: string;
+
+    @ManyToOne(type => Diver, diver => diver.subscriptions)
+    @JoinColumn({name: 'diver_id'})
+    diver: Diver
 
     @Column()
     subscription_ts: number;
@@ -18,6 +29,6 @@ export class Subscription {
     @Column()
     paid: boolean;
 
-    // @ManyToOne(type => Diver, diver => diver.subscriptions)
-    // diver: Diver;
+    @OneToMany(type => PackingList, packingList => packingList.subscription)
+    packing_lists: PackingList[]
 }
