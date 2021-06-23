@@ -10,21 +10,10 @@ import { v4 as uuidv4 } from 'uuid';
 export class SubscriptionsService {
   constructor(@InjectRepository(Subscription) private subscriptionsRepository: Repository<Subscription>) {}
 
-  async create(createSubscriptionDto: CreateSubscriptionDto): Promise<Subscription> {
+  create(createSubscriptionDto: CreateSubscriptionDto): Promise<Subscription> {
     const newSubscription = this.subscriptionsRepository.create({...createSubscriptionDto});
     newSubscription.subscription_id = uuidv4();
-    await this.subscriptionsRepository.save(newSubscription);
-
-    // Add packing list
-    const expandedSubscription = await this.subscriptionsRepository.findOne(newSubscription.subscription_id, {relations: [
-      'dive', 'dive.gear_required_list', 'dive.gear_required_list.lines', 'dive.gear_required_list.lines.item', 'packing_lists'
-    ]})
-
-    console.log(expandedSubscription.dive.gear_required_list.lines);
-    
-    newSubscription.packing_lists = [];
-
-    return expandedSubscription;
+    return this.subscriptionsRepository.save(newSubscription);
   }
 
   findAll(options: object = {}): Promise<Subscription[]> {
@@ -42,7 +31,9 @@ export class SubscriptionsService {
   }
 
   async remove(id: string): Promise<Subscription> {
+    console.log(`==========+> Removing id ${id}`)
     const subscription = await this.findById(id);
     return this.subscriptionsRepository.remove(subscription);
+    // return this.subscriptionsRepository.remove(subscription);
   }
 }

@@ -42,13 +42,44 @@ export class AppService {
     });
 
     // // Create Item
-    const item = await this.itemsService.create({
+    const itemBCD = await this.itemsService.create({
       name: "BCD",
       photo_url: "https://cdn.webshopapp.com/shops/296139/files/322792318/scubapro-level.jpg",
       sizes: 'S,M,L',
       rent_price: 10
     });
-
+    const itemWeight = await this.itemsService.create({
+      name: "Weights",
+      photo_url: "https://www.sportsmarinebunbury.com.au/wp-content/uploads/2019/11/DPBE-WEIGHT.jpg",
+      sizes: '1,2,3,4,5,6,7,8,9,10',
+      rent_price: 10
+    });
+    const itemRegs = await this.itemsService.create({
+      name: "Regulators",
+      photo_url: "https://cdn.shopify.com/s/files/1/0153/0833/products/MTX_C.jpg?v=1606202338",
+      sizes: 'YOKE,DIN',
+      rent_price: 10
+    });
+    const itemTanks = await this.itemsService.create({
+      name: "Tanks",
+      photo_url: "https://jettydive.com.au/wp-content/uploads/2019/03/Faber-12.2-ltr-Dive-Cylinder-1.jpg",
+      sizes: '10.5L AIR, 12L Nitrox',
+      rent_price: 10
+    });
+    const itemWetsuit = await this.itemsService.create({
+      name: "Wetsuit",
+      photo_url: "https://cdn.shopify.com/s/files/1/0249/5006/products/Neptune-Triton-7-5mm-Semi-Dry-Wetsuit_1024x1024.jpg?v=1492744564",
+      sizes: '2,3,4',
+      rent_price: 10
+    });
+    const itemFins = await this.itemsService.create({
+      name: "Fins",
+      photo_url: "https://images.squarespace-cdn.com/content/v1/5f0d2f766d40f05e88e422de/1610268732513-3ZAOPASU8BSLK657MX93/ke17ZwdGBToddI8pDm48kAf-OpKpNsh_OjjU8JOdDKBZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzAFzFJoCInLPKyj9AG8yKe7-Q2aFvP177fkO9TY_-rz5WoqqTEZpmj4yDEOdwKV68/Vented-fins-Apeks-RK3-Military-Rubber-Diving-Fin.jpg",
+      sizes: 'XS,S,M,L,XL',
+      rent_price: 10
+    });
+    
+    
     // Create Gear list
     const gearRequiredList = await this.gearRequiredListsService.create({
       name: "Double shore dive",
@@ -58,7 +89,32 @@ export class AppService {
     // Create Gear list line
     const gearRequiredListLine = await this.gearRequiredListLinesService.create({
       list_id: gearRequiredList.list_id,
-      item_id: item.item_id,
+      item_id: itemBCD.item_id,
+      optional: false
+    });
+    await this.gearRequiredListLinesService.create({
+      list_id: gearRequiredList.list_id,
+      item_id: itemWeight.item_id,
+      optional: false
+    });
+    await this.gearRequiredListLinesService.create({
+      list_id: gearRequiredList.list_id,
+      item_id: itemRegs.item_id,
+      optional: false
+    });
+    await this.gearRequiredListLinesService.create({
+      list_id: gearRequiredList.list_id,
+      item_id: itemTanks.item_id,
+      optional: false
+    });
+    await this.gearRequiredListLinesService.create({
+      list_id: gearRequiredList.list_id,
+      item_id: itemWetsuit.item_id,
+      optional: false
+    });
+    await this.gearRequiredListLinesService.create({
+      list_id: gearRequiredList.list_id,
+      item_id: itemFins.item_id,
       optional: false
     });
 
