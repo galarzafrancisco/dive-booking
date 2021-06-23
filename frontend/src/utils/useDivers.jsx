@@ -6,7 +6,6 @@ function useDivers (dependencies = []) {
     const [divers, setDivers] = useState([]);
 
     useEffect(() => {
-        console.log('Calling divers api')
         axios.get('/divers').then(results => setDivers(results.data))
     }, dependencies);
 

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Hook
 function useDiver ({diver_id}) {
-    const [diver, setDiver] = useState({});
+    const [diver, setDiver] = useState({subscriptions: []});
 
     useEffect(() => {
         axios.get(`/divers/${diver_id}`).then(results => setDiver(results.data))
