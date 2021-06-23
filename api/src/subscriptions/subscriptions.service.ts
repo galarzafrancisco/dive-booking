@@ -17,7 +17,7 @@ export class SubscriptionsService {
 
     // Add packing list
     const expandedSubscription = await this.subscriptionsRepository.findOne(newSubscription.subscription_id, {relations: [
-      'dive', 'dive.gear_required_list', 'dive.gear_required_list.lines', 'dive.gear_required_list.lines.item'
+      'dive', 'dive.gear_required_list', 'dive.gear_required_list.lines', 'dive.gear_required_list.lines.item', 'packing_lists'
     ]})
 
     console.log(expandedSubscription.dive.gear_required_list.lines);

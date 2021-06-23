@@ -19,10 +19,22 @@ export class SubscriptionsController {
     });
   }
 
+  // [
+  //   'dive', 'dive.gear_required_list', 'dive.gear_required_list.lines', 'dive.gear_required_list.lines.item', 'packing_lists'
+  // ]
+
   @Get(':id')
   findById(@Param('id') id: string) {
     return this.subscriptionsService.findById(id, {
-      relations: ['diver', 'dive']
+      relations: [
+        'diver',
+        'dive',
+        'dive.gear_required_list',
+        'dive.gear_required_list.lines',
+        'dive.gear_required_list.lines.item',
+        'packing_lists',
+        'packing_lists.item'
+      ]
     });
   }
 

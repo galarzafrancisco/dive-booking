@@ -29,6 +29,6 @@ export class Subscription {
     @Column()
     paid: boolean;
 
-    @OneToMany(type => PackingList, packingList => packingList.subscription)
+    @OneToMany(type => PackingList, packing_lists => packing_lists.subscription)
     packing_lists: PackingList[]
 }

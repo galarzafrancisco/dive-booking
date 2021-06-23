@@ -1,5 +1,6 @@
+import { Item } from "src/items/entities/item.entity";
 import { Subscription } from "src/subscriptions/entities/subscription.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class PackingList {
@@ -15,6 +16,10 @@ export class PackingList {
 
     @Column()
     item_id: string;
+
+    @ManyToOne(type => Item, item => item.packing_lists)
+    @JoinColumn({name: 'item_id'})
+    item: Item;
 
     @Column()
     size: string;

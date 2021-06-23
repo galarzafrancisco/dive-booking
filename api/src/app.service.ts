@@ -58,7 +58,8 @@ export class AppService {
     // Create Gear list line
     const gearRequiredListLine = await this.gearRequiredListLinesService.create({
       list_id: gearRequiredList.list_id,
-      item_id: item.item_id
+      item_id: item.item_id,
+      optional: false
     });
 
     // Create a shop

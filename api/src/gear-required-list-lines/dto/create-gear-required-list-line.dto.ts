@@ -1,4 +1,4 @@
-import { IsUUID } from "class-validator";
+import { IsBoolean, IsUUID } from "class-validator";
 
 export class CreateGearRequiredListLineDto {
     @IsUUID()
@@ -6,4 +6,7 @@ export class CreateGearRequiredListLineDto {
 
     @IsUUID()
     item_id: string;
+
+    @IsBoolean()
+    optional: boolean;
 }
