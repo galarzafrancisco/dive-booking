@@ -8,7 +8,7 @@ function Items({}) {
 
     const [randomId, setRandomId] = useState('123');
 
-    const items = useItems(randomId);
+    const items = useItems([randomId]);
     const [addingItem, setAddingItem] = useState(false);
 
     return (

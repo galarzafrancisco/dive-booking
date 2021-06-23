@@ -32,7 +32,7 @@ function AddAnItem({addingItem, setAddingItem, triggerRefresh}) {
         const photo_url = document.getElementById('input-photo_url').value;
         const sizes = document.getElementById('input-sizes').value;
         const rent_price = parseFloat(document.getElementById('input-rent_price').value);
-        axios.post('/gear-required-lists', {
+        axios.post('/items', {
             name,
             photo_url,
             sizes,
