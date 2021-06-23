@@ -24,12 +24,8 @@ export class DiversController {
   }
 
   @Get(':id')
-  findById(@Param('id') id: string, @Query('subscriptions') subscriptions: boolean) {
-    const relations = [];
-    if (Boolean(subscriptions)) {
-      relations.push('subscriptions')
-    }
-    return this.diversService.findById(id, {relations});
+  findById(@Param('id') id: string) {
+    return this.diversService.findById(id, {relations: ['subscriptions', 'subscriptions.dive', 'subscriptions.dive.site']});
   }
 
   @Patch(':id')

@@ -22,4 +22,6 @@ export class Item {
     @OneToMany(type => PackingList, packing_list => packing_list.item)
     packing_lists: PackingList[]
 
+    @OneToMany(type => GearRequiredListLine, gearRequiredListLine => gearRequiredListLine.item)
+    gear_required_list_lines: GearRequiredListLine[];
 }

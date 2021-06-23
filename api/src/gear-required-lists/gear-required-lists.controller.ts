@@ -19,7 +19,9 @@ export class GearRequiredListsController {
 
   @Get(':id')
   findById(@Param('id') id: string) {
-    return this.gearRequiredListsService.findById(id);
+    return this.gearRequiredListsService.findById(id, {relations: [
+      'lines', 'lines.item'
+    ]});
   }
 
   @Patch(':id')

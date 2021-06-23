@@ -19,7 +19,11 @@ export class ItemsController {
 
   @Get(':id')
   findById(@Param('id') id: string) {
-    return this.itemsService.findById(id);
+    return this.itemsService.findById(id, {relations: [
+      'packing_lists',
+      'gear_required_list_lines',
+      'gear_required_list_lines.list'
+    ]});
   }
 
   @Patch(':id')
