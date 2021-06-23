@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 
 // Hook
-function useDive ({diver_id}) {
+function useDiver ({diver_id}) {
     const [diver, setDiver] = useState({});
 
     useEffect(() => {
@@ -12,4 +12,4 @@ function useDive ({diver_id}) {
     return diver;
 }
 
-export default useDive;
+export default useDiver;

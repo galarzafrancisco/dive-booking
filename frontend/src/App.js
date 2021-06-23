@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Dives from './components/Dives';
 import DivePortal from './components/DivePortal/DivePortal';
+import SubscriptionPortal from './components/SubscriptionPortal/SubscriptionPortal';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route exact path='/dives' component={Dives} />
             <Route path='/dives/:dive_id' component={DivePortal}/>
             <Route path='/dives/:dive_id/addDiver' component={DivePortal}/>
+            <Route path='/subscriptions/:subscription_id' component={SubscriptionPortal}/>
           </Switch>
         </main>
         <Footer />

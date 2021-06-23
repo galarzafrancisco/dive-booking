@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Hook
 function useSubscription ({subscription_id}) {
-    const [subscription, setSubscription] = useState({});
+    const [subscription, setSubscription] = useState({diver: {}, dive: {}});
 
     useEffect(() => {
         axios.get(`/subscriptions/${subscription_id}`).then(results => setSubscription(results.data))
